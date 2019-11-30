@@ -1,5 +1,6 @@
 from multiprocessing import Manager, Process
 from music_player import spongebob_theme, play_final_countdown
+from spongebob_printer import print_all_spongebob
 
 def play_original(has_moved):
     """
@@ -21,17 +22,20 @@ def play_new():
         spongebob_theme()
 
 def print_new():
-    # runs the LCD thing
+    print_all_spongebob()
 
 def music_handler(mver=0):
     with Manager() as manager:
         has_moved = manager.Value('b', False)
         processOriginal = Process(target=play_original, args=(has_moved))
         processNew = Process(target=play_new, args=())
+        processNewPrinter = Process(target = print_new, args = ())
     if mver == 0:
         processOriginal.start()
         processOriginal.join()
     elif mver == 1:
         processOriginal.kill()
         processNew.start()
+        processNewPrinter.start()
         processNew.join()
+        processNewPrinter.join()
