@@ -1,5 +1,5 @@
-from multiprocessing import Manager, Process, Lock
-from sponge_bob_song import spongebob_theme
+from multiprocessing import Manager, Process
+from music_player import spongebob_theme, play_final_countdown
 
 def play_original(has_moved):
     """
@@ -9,8 +9,7 @@ def play_original(has_moved):
         if has_moved:
             exit()
         else:
-            # play hot-cross-buns theme
-            # should play sequentially
+            play_final_countdown()
 
 
 def play_new():

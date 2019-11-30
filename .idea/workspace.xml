@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8397e724-4f6b-473b-9c2b-97b9641b5042" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantiltscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantiltscript.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_music.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_music.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sponge_bob_song.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_player.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +130,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

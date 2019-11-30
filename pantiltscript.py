@@ -24,7 +24,7 @@ from multiprocessing import Lock
 # global variables
 button_pin1 = 25
 button_pin2 = 25
-buzzer_pin1 = 17
+buzzer_pin1 = 27
 
 
 # The main function for this program is actually at the bottom of the script and labelled "if __name__ == "__main__":"

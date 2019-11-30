@@ -159,6 +159,39 @@ def spongebob_theme():
 	]
 	setup()
 	play(sponge_bob_melody, sponge_bob_tempo, 0.20, 0.8)
+
+def play_final_countdown():
+	final_countdown_melody = [
+		notes['A3'],notes['E5'],notes['D5'],notes['E5'],notes['A4'],
+		notes['F3'],notes['F5'],notes['E5'],notes['F5'],notes['E5'],notes['D5'],
+		notes['D3'],notes['F5'],notes['E5'],notes['F5'],notes['A4'],
+		notes['G3'],0,notes['D5'],notes['C5'],notes['D5'],notes['C5'],notes['B4'],notes['D5'],
+		notes['C5'],notes['A3'],notes['E5'],notes['D5'],notes['E5'],notes['A4'],
+		notes['F3'],notes['F5'],notes['E5'],notes['F5'],notes['E5'],notes['D5'],
+		notes['D3'],notes['F5'],notes['E5'],notes['F5'],notes['A4'],
+		notes['G3'],0,notes['D5'],notes['C5'],notes['D5'],notes['C5'],notes['B4'],notes['D5'],
+		notes['C5'],notes['B4'],notes['C5'],notes['D5'],notes['C5'],notes['D5'],
+		notes['E5'],notes['D5'],notes['C5'],notes['B4'],notes['A4'],notes['F5'],
+		notes['E5'],notes['E5'],notes['F5'],notes['E5'],notes['D5'],
+		notes['E5'],
+	]
+
+	final_countdown_tempo = [
+		1,16,16,4,4,
+		1,16,16,8,8,4,
+		1,16,16,4,4,
+		2,4,16,16,8,8,8,8,
+		4,4,16,16,4,4,
+		1,16,16,8,8,4,
+		1,16,16,4,4,
+		2,4,16,16,8,8,8,8,
+		4,16,16,4,16,16,
+		8,8,8,8,4,4,
+		2,8,4,16,16,
+		1,
+	]
+	setup()
+	play(final_countdown_melody, final_countdown_tempo, 0.30, 1.200)
 	
 	
 if __name__ == '__main__':
