@@ -1,5 +1,5 @@
 from multiprocessing import Manager, Process, Lock
-
+from sponge_bob_song import spongebob_theme
 
 def play_original(has_moved):
     """
@@ -9,7 +9,8 @@ def play_original(has_moved):
         if has_moved:
             exit()
         else:
-    # play hot-cross-buns theme
+            # play hot-cross-buns theme
+            # should play sequentially
 
 
 def play_new():
@@ -18,10 +19,7 @@ def play_new():
     Plays the spongebob theme.
     """
     while True:
-
-
-# plays spongebob
-# this should be sequential, that is, looping.
+        spongebob_theme()
 
 
 def music_handler(mver=0):

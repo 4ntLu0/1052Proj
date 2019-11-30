@@ -21,11 +21,9 @@ from basic_predictor import predictOnImage
 from play_music import music_handler
 from multiprocessing import Lock
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
+# global variables
+button_pin = 25
+buzzer_pin1 = 17
 
 # The main function for this program is actually at the bottom of the script and labelled "if __name__ == "__main__":"
 # The main values of interest for tuning are around line 170, which would are for the PID controller. To add code for
@@ -40,9 +38,6 @@ def setupLCD():
 
 def printLCD(string1, string2):
     lcd_i2c.printer(string1, string2)
-
-
-setupLCD()
 
 # Define the range for the servos and for convenience which GPIO pins are in use (GPIO label, panning servo first.).
 servoRange = (-90, 90)
@@ -238,7 +233,10 @@ if __name__ == "__main__":
     # Anything you want to add on startup (such as setting up GPIO) should be here.
 
     GPIO.setmode(GPIO.BCM)
+    GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(21, GPIO.OUT)
+    GPIO.setup(buzzer_pin1, GPIO.OUT)
+    setupLCD()
 
     with Manager() as manager:
 
