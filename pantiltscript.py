@@ -37,10 +37,8 @@ buzzer_pin1 = 27
 def setupLCD():
     lcd_i2c.lcd_init();
 
-
 def printLCD(string1, string2):
     lcd_i2c.printer(string1, string2)
-
 
 # Define the range for the servos and for convenience which GPIO pins are in use (GPIO label, panning servo first.).
 servoRange = (-90, 90)
@@ -120,20 +118,25 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
         # Find the object's location
         objectLoc = obj.update(frame, (centerX.value, centerY.value))
         ((objX.value, objY.value), rect) = objectLoc
-        # print(size_h, size_y)
-        # Draw a box around the location.
+
+        # this handles everything if we want to take a picture
+
+
+        # Draw a box around the location. A lot of capturing is also handled below.
         if rect is not None:
             str2.value = 'Face Detected'
             (x, y, w, h) = rect
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            scale_x = abs(w - x) * 0.1
-            scale_y = abs(h - y) * 0.5
 
+            # this must happen inline because it can onyl occur when a face is captured.
             if (GPIO.input(button_pin1) == GPIO.HIGH):
                 lock.acquire()
 
                 str1.value = 'Taking Picture'
                 str2.value = 'Processing...'
+
+                scale_x = abs(w - x) * 0.1
+                scale_y = abs(h - y) * 0.5
 
                 y = int(y - scale_y)
                 h = int(h + 2 * scale_y)
@@ -153,8 +156,6 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
 
                 classify.value = True
                 lock.release()
-        if rect is None:
-            face = False
 
         # Display the frame to the screen, will create a window named "Pan-Tilt Tracker".
         cv2.imshow("Pan-Tilt Tracker", frame)
@@ -191,7 +192,6 @@ def in_range(val, start, end):
 
 # This is where the servos are actually told to move, using pan and tilt angles determined by error calculations in the PIDcontroller
 # and the angle_converter.
-
 def set_servos(pan, tlt):
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -220,7 +220,6 @@ def set_servos(pan, tlt):
 
 
 # Check if this is the main body of execution if so, we get to actually start doing stuff.
-
 if __name__ == "__main__":
 
     # Setup area:
