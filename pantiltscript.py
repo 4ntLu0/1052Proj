@@ -1,5 +1,4 @@
-
-#Imports
+# Imports
 from multiprocessing import Manager
 from multiprocessing import Process
 from imutils.video import VideoStream
@@ -11,20 +10,21 @@ import signal
 import time
 import sys
 import cv2
-import os 
-#import pigpio
+import os
+# import pigpio
 import RPi.GPIO as GPIO
 import lcd_i2c
 
-#our imports
+# our imports
 from time import gmtime, strftime
 from basic_predictor import predictOnImage
-from sponge_bob_song import spongebob_theme
+from play_music import music_handler
 from multiprocessing import Lock
+
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(25,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(21,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 # The main function for this program is actually at the bottom of the script and labelled "if __name__ == "__main__":"
@@ -37,14 +37,16 @@ GPIO.setup(21,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 def setupLCD():
     lcd_i2c.lcd_init();
 
+
 def printLCD(string1, string2):
-    lcd_i2c.printer(string1,string2)
+    lcd_i2c.printer(string1, string2)
+
 
 setupLCD()
 
-
 # Define the range for the servos and for convenience which GPIO pins are in use (GPIO label, panning servo first.).
 servoRange = (-90, 90)
+
 
 # This is where the program closes.
 # Purpose is to exit the script if necessary, but since this script uses references to multiple different classes, and multiple
@@ -53,23 +55,11 @@ servoRange = (-90, 90)
 
 def signal_handler(sig, frame):
     print("[INFO] 'ctrl + c' pressed, stopping.")
-    
-    GPIO.cleanup()
-    
-    #exit the program
-    sys.exit()
 
-def ori_music():
-    # play original music
-def play_music():
-    while True:
-        if GPIO.input(21) == GPIO.HIGH: #TODO: DO NOT USE PIN 21!!!
-            # we have gotten the request to stop taking pictures, and to start playing songs.
-            processPrintLCD.shutdown()
-            #TODO: print spongebob things!!
-            #TODO: play music continually
-        else:
-            #TODO: figure out how this entire damn function works
+    GPIO.cleanup()
+
+    # exit the program
+    sys.exit()
 
 
 # Calls the facetracker script to find the center of an object.
@@ -86,6 +76,7 @@ def print_LCD(str1, str2, classify):
         printLCD(str1.value, str2.value)
         time.sleep(0.5)
 
+
 def classifier(path, classify, str1, str2, lock):
     """Written by Anthony Luo
     """
@@ -100,8 +91,8 @@ def classifier(path, classify, str1, str2, lock):
             time.sleep(1)
             # updates every second or so (not super critical - image is saved anyways)
 
+
 def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, str2):
-    
     # Uses the signal_handler to stop the program when a keyboard interrupt is made (ctrl + c in terminal)
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -113,10 +104,10 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
     obj = ObjCenter(args["cascade"])
 
     while True:
-        #print(atime)
+        # print(atime)
         # Grab the frame from the threaded video stream and flip it vertically (since our camera is by default upside down)
         frame = vs.read()
-        frame = cv2.flip(frame,0)
+        frame = cv2.flip(frame, 0)
         crop = frame.copy()
 
         # Calculate the center of the frame as this is where we will try to keep the face.
@@ -127,17 +118,16 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
         # Find the object's location
         objectLoc = obj.update(frame, (centerX.value, centerY.value))
         ((objX.value, objY.value), rect) = objectLoc
-        #print(size_h, size_y)
+        # print(size_h, size_y)
         # Draw a box around the location.
         if rect is not None:
             str2.value = 'Face Detected'
             (x, y, w, h) = rect
-            cv2.rectangle(frame, (x,y), (x + w, y + h), (0, 255, 0), 2)
-            scale_x = abs(w-x) * 0.1
-            scale_y = abs(h-y) * 0.5
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            scale_x = abs(w - x) * 0.1
+            scale_y = abs(h - y) * 0.5
 
-            if(GPIO.input(25) == GPIO.HIGH):
-
+            if (GPIO.input(25) == GPIO.HIGH):
                 lock.acquire()
 
                 str1.value = 'Taking Picture'
@@ -146,12 +136,12 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
                 y = int(y - scale_y)
                 h = int(h + 2 * scale_y)
                 x = int(x - scale_x)
-                w = int(w + 2*scale_x)
-                crop = crop[y:y+h, x:x+h]
+                w = int(w + 2 * scale_x)
+                crop = crop[y:y + h, x:x + h]
                 cv2.imshow('memes.jpg', crop)
                 sy, sx = crop.shape[:2]
                 dim = sy * 10, sx * 10
-                crop = cv2.resize(crop, dim, interpolation = cv2.INTER_AREA)
+                crop = cv2.resize(crop, dim, interpolation=cv2.INTER_AREA)
                 ctime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                 path.value = ctime + '.png'
@@ -160,6 +150,7 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
                 cv2.imshow(ctime + 'meme', frame)
 
                 classify.value = True
+                music_handler(1)
                 lock.release()
         if rect is None:
             face = False
@@ -176,21 +167,20 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
 
 def pid_process(output, p, i, d, objCoord, centerCoord):
     # Signal trap
-    signal.signal(signal.SIGINT, signal_handler) #Signal
+    signal.signal(signal.SIGINT, signal_handler)  # Signal
 
     # Create a PID object (using the PIDcontroller.py script) and initialize it with parameters p, i, and d.
     p = PID(p.value, i.value, d.value)
     p.initialize()
-    
+
     GPIO.output(21, GPIO.LOW)
-    
+
     while True:
-        
         # Find the exact error between face center and center of screen, then update the value of error for all processes.
-        error = centerCoord.value - objCoord.value #objCoord.value - centerCoord.value 
+        error = centerCoord.value - objCoord.value  # objCoord.value - centerCoord.value
         output.value = p.update(error)
-        #print('center val:', centerCoord.value, 'obj val:', objCoord.value, 'error:', error, sep = ' ') #This tells us what the calculated error is every iteration
-        
+        # print('center val:', centerCoord.value, 'obj val:', objCoord.value, 'error:', error, sep = ' ') #This tells us what the calculated error is every iteration
+
 
 # A quick function to compare 1 number to a range of numbers.
 
@@ -205,31 +195,29 @@ def set_servos(pan, tlt):
     signal.signal(signal.SIGINT, signal_handler)
 
     while True:
-        
+
         # The pan and tilt angles are the reverse of the values generated due to the camera being upside down by default.
         # If the servo in use is able to keep the camera right-side-up just remove the -1 from these lines.
         panAngle = (-1) * pan.value
         tiltAngle = (-1) * tlt.value
-        
-        
-        
+
         # If the pan angle is within the range defined at the top of the script, use the convert_angle function to move towards it.
         if in_range(panAngle, servoRange[0], servoRange[1]):
             try:
                 pth.pan(panAngle)
-                #print(panAngle)
+                # print(panAngle)
             except:
-                print ("Could not move the panning servo.")
-
+                print("Could not move the panning servo.")
 
         # If the tilt angle is within the range defined at the top of the script, use the convert_angle function to move towards it.
         if in_range(tiltAngle, servoRange[0], servoRange[1]):
             try:
                 pth.tilt(tiltAngle)
-                #print(tiltAngle)
+                # print(tiltAngle)
             except:
                 print("Could not move the tilting servo.")
- 
+
+
 # Check if this is the main body of execution if so, we get to actually start doing stuff.
 
 if __name__ == "__main__":
@@ -243,27 +231,25 @@ if __name__ == "__main__":
                     help="haarcascade_frontalface_default.xml")
     args = vars(ap.parse_args())
 
-
     # Start a manager for process-safe variables, this manager allows us to share values between different simultaneous processes, so the process
     # finding the center of a face can pass that value to the PID controller to find error which can pass that value over to move the servos in both
     # the panning process and the tilting process.
-    
+
     # Anything you want to add on startup (such as setting up GPIO) should be here.
-    
+
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(21, GPIO.OUT)
-    
+
     with Manager() as manager:
-        
+
         # After this the main loop of the program begins, running multiple processes at once which is kind of like if it looped over
         # All of the prior functions at once, so if you want something to loop put it in one of the prior functions.
-
 
         # Do not modify these.
         # Don't do it.
 
         # Set integer values for the object center (x, y)-coords
-        centerX = manager.Value("i",0)
+        centerX = manager.Value("i", 0)
         centerY = manager.Value("i", 0)
 
         # Set integer values for the object's (x, y)-coords
@@ -274,21 +260,20 @@ if __name__ == "__main__":
         pan = manager.Value("i", 0)
         tlt = manager.Value("i", 0)
 
-
         # Modify these 6 values, keeping them above 0 and less than 1.
         # These are the coefficients for the PID controller, which modifies the weight that each
         # type of error holds, changing these will modify how the pan-tilt module responds to movement
         # Try adjusting these one at a time to get a feel for how these work.
 
         # PID values for panning
-        panP = manager.Value("f", 0.009) 
+        panP = manager.Value("f", 0.009)
         panI = manager.Value("f", 0.30)
-        panD = manager.Value("f", 0.0005) # Try to keep these an order of magnitude lower than your P and I values
+        panD = manager.Value("f", 0.0005)  # Try to keep these an order of magnitude lower than your P and I values
 
         # PID values for tilting
-        tiltP = manager.Value("f", 0.009) 
+        tiltP = manager.Value("f", 0.009)
         tiltI = manager.Value("f", 0.30)
-        tiltD = manager.Value("f", 0.0005) # Try to keep these an order of magnitude lower than your P and I values
+        tiltD = manager.Value("f", 0.0005)  # Try to keep these an order of magnitude lower than your P and I values
 
         # Values added by L2-4
         classify = manager.Value('b', False)
@@ -298,7 +283,6 @@ if __name__ == "__main__":
 
         # Beyond this point is multiprocessing stuff that is not important to know for making this work.
 
-
         # Have to deal with four processes now, all at once.
         # objectCenter - find face and how far i it is from center
         # panning      - determines right X coords to pan to
@@ -306,41 +290,41 @@ if __name__ == "__main__":
         # setServos    - moves the servos
 
         lock = Lock()
-        #TODO: add processes for music, and wtv else.
+        # TODO: add processes for music, and wtv else.
 
-        processPrintLCD = Process(target = print_LCD, args = (str1, str2))
+        processPrintLCD = Process(target=print_LCD, args=(str1, str2))
 
-        processClassifier = Process(target = classifier, args = (path, classify, str1, str2, lock))
+        processClassifier = Process(target=classifier, args=(path, classify, str1, str2, lock))
 
         # Declare processes for everything that needs to happen, first passing in the target function to use from above,
         # and passing in the values from the Manager as arguments for the functions. Now they all know which variables to act on together.
-    
-        processObjectCenter = Process(target=obj_center, args=(args, objX, objY, centerX, centerY, lock, classify, path, str1, str2))
-        
+
+        processObjectCenter = Process(target=obj_center,
+                                      args=(args, objX, objY, centerX, centerY, lock, classify, path, str1, str2))
+
         processPanning = Process(target=pid_process, args=(pan, panP, panI, panD, objX, centerX))
-        
+
         processTilting = Process(target=pid_process, args=(tlt, tiltP, tiltI, tiltD, objY, centerY))
-        
+
         processSetServos = Process(target=set_servos, args=(pan, tlt))
 
-
         # Edited by Anthony Luo: Starts all the processes. Hopefully doesn't set the pi on fire.
-        
+
         try:
             processObjectCenter.start()
         except:
             print("Failed to start the Object Center process.")
-        
+
         try:
             processPanning.start()
         except:
             print("Failed to start the panning process.")
-            
+
         try:
             processTilting.start()
         except:
             print("Failed to start the tilting process.")
-            
+
         try:
             processSetServos.start()
         except:
@@ -355,14 +339,13 @@ if __name__ == "__main__":
             processClassifier.start()
         except:
             print('Failed to start Classifier')
-            
 
         # Join all 4 processes so they happen together.
         try:
             processObjectCenter.join()
         except:
             print("Could not join Object Center")
-            
+
         try:
             processPanning.join()
         except:
