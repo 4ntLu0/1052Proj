@@ -21,6 +21,8 @@ def play_new():
     while True:
         spongebob_theme()
 
+def print_new():
+    # runs the LCD thing
 
 def music_handler(mver=0):
     with Manager() as manager:

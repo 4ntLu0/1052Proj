@@ -22,8 +22,10 @@ from play_music import music_handler
 from multiprocessing import Lock
 
 # global variables
-button_pin = 25
+button_pin1 = 25
+button_pin2 = 25
 buzzer_pin1 = 17
+
 
 # The main function for this program is actually at the bottom of the script and labelled "if __name__ == "__main__":"
 # The main values of interest for tuning are around line 170, which would are for the PID controller. To add code for
@@ -38,6 +40,7 @@ def setupLCD():
 
 def printLCD(string1, string2):
     lcd_i2c.printer(string1, string2)
+
 
 # Define the range for the servos and for convenience which GPIO pins are in use (GPIO label, panning servo first.).
 servoRange = (-90, 90)
@@ -62,14 +65,18 @@ def print_LCD(str1, str2, classify):
     """Written by Anthony Luo
     """
     while True:
-        if classify:
+        if GPIO.input(button_pin2) == GPIO.HIGH:
+            music_handler(1)  # we check for this here, because music_handler is tied directly to print LCD
+            processPrintLCD.terminate()
+            exit()
+        elif classify:
             str1.value = 'Detected:'
             # classification strings will happen here
         else:
             atime = str(strftime("%m/%d %H:%M:%S", gmtime()))
             str1.value = atime
         printLCD(str1.value, str2.value)
-        time.sleep(0.5)
+    exit()
 
 
 def classifier(path, classify, str1, str2, lock):
@@ -122,7 +129,7 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
             scale_x = abs(w - x) * 0.1
             scale_y = abs(h - y) * 0.5
 
-            if (GPIO.input(25) == GPIO.HIGH):
+            if (GPIO.input(button_pin1) == GPIO.HIGH):
                 lock.acquire()
 
                 str1.value = 'Taking Picture'
@@ -145,7 +152,6 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
                 cv2.imshow(ctime + 'meme', frame)
 
                 classify.value = True
-                music_handler(1)
                 lock.release()
         if rect is None:
             face = False
@@ -233,8 +239,8 @@ if __name__ == "__main__":
     # Anything you want to add on startup (such as setting up GPIO) should be here.
 
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(21, GPIO.OUT)
+    GPIO.setup(button_pin1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(button_pin2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(buzzer_pin1, GPIO.OUT)
     setupLCD()
 
