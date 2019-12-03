@@ -1,3 +1,8 @@
+"""
+Written by Prayanush Natami for ECOR 1052
+"""
+
+
 import RPi.GPIO as GPIO
 import time
 

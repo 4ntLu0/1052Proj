@@ -37,8 +37,10 @@ buzzer_pin1 = 27
 def setupLCD():
     lcd_i2c.lcd_init();
 
+
 def printLCD(string1, string2):
     lcd_i2c.printer(string1, string2)
+
 
 # Define the range for the servos and for convenience which GPIO pins are in use (GPIO label, panning servo first.).
 servoRange = (-90, 90)
@@ -121,7 +123,6 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
         ((objX.value, objY.value), rect) = objectLoc
 
         # this handles everything if we want to take a picture
-
 
         # Draw a box around the location. A lot of capturing is also handled below.
         if rect is not None:

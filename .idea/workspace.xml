@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="8397e724-4f6b-473b-9c2b-97b9641b5042" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music_notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PIDcontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/PIDcontroller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sponge_bob_song.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sponge_bob_song2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spongebob.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantiltscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantiltscript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_music.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servostopper.py" beforeDir="false" afterPath="$PROJECT_DIR$/servostopper.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +30,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UIM90MOdvPZ9XMvKDuKUNNUcux" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -138,5 +147,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

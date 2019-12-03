@@ -25,6 +25,9 @@ def print_new():
     print_all_spongebob()
 
 def music_handler(mver=0):
+    """
+    Also written by Anthony Luo, just very badly.
+    """
     with Manager() as manager:
         has_moved = manager.Value('b', False)
         processOriginal = Process(target=play_original, args=(has_moved))
