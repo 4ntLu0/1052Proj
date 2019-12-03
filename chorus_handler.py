@@ -33,7 +33,7 @@ def LED_new():
     Who_lives_in_a_pineapple()
     Yellow_and_Porous()
 
-def music_handler(mver=0):
+def handler(mver=0):
     """
     Also written by Anthony Luo, just very badly.
     """

@@ -18,7 +18,7 @@ import lcd_i2c
 # our imports
 from time import gmtime, strftime
 from basic_predictor import predictOnImage
-from chorus_handler import music_handler
+from chorus_handler import handler
 from multiprocessing import Lock
 
 # global variables
@@ -35,7 +35,7 @@ buzzer_pin1 = 27
 
 
 def setupLCD():
-    lcd_i2c.lcd_init();
+    lcd_i2c.lcd_init()
 
 
 def printLCD(string1, string2):
@@ -66,7 +66,7 @@ def print_LCD(str1, str2, classify):
     """
     while True:
         if GPIO.input(button_pin2) == GPIO.HIGH:
-            music_handler(1)  # we check for this here, because music_handler is tied directly to print LCD
+            handler(1)  # we check for this here, because handler is tied directly to print LCD
             processPrintLCD.terminate()
             exit()
         elif classify:
