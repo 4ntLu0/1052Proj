@@ -256,7 +256,7 @@ if __name__ == '__main__':
     try:
         setup()
         print("Spongebob theme")
-        spongebob_theme()
+        play_spongebob_theme()
         GPIO.cleanup()
     except KeyboardInterrupt:
         GPIO.cleanup()

@@ -25,6 +25,7 @@
   </component>
   <component name="ProjectId" id="1UIM90MOdvPZ9XMvKDuKUNNUcux" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>

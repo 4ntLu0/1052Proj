@@ -1,5 +1,5 @@
 from multiprocessing import Manager, Process
-from music_player import play_spongebob_theme, play_final_countdown
+from music_player import play_spongebob_theme, play_final_countdown, play_super_mario
 from spongebob_printer import print_all_spongebob
 
 def play_original(has_moved):
@@ -10,7 +10,7 @@ def play_original(has_moved):
         if has_moved:
             exit()
         else:
-            play_final_countdown()
+            play_super_mario()
 
 
 def play_new():
