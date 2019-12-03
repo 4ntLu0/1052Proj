@@ -109,6 +109,7 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
         frame = vs.read()
         frame = cv2.flip(frame, 0)
         crop = frame.copy()
+        main = frame.copy()
 
         # Calculate the center of the frame as this is where we will try to keep the face.
         (H, W) = frame.shape[:2]
@@ -151,11 +152,10 @@ def obj_center(args, objX, objY, centerX, centerY, lock, classify, path, str1, s
 
                 path.value = ctime + '.png'
                 cv2.imshow(path.value, crop)
-                cv2.imwrite(path.value, crop)
+                cv2.imwrite(path.value, main)
                 cv2.imshow(ctime + 'meme', frame)
-
-                classify.value = True
                 lock.release()
+                classify.value = True
 
         # Display the frame to the screen, will create a window named "Pan-Tilt Tracker".
         cv2.imshow("Pan-Tilt Tracker", frame)

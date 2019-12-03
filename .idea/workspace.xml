@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8397e724-4f6b-473b-9c2b-97b9641b5042" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic_predictor.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic_predictor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantiltscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantiltscript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.test2">
     <configuration name="pantiltscript" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Luo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -104,8 +107,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.test2" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.pantiltscript" />
       </list>
     </recent_temporary>

@@ -4,7 +4,7 @@ Originally written on google Colab, compiled by Google Colab.
 
 Uses pretrained model and weights from basic_classification.
 """
-
+from multiprocessing import Manager, Process, Lock
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Flatten, Activation, Dense, Dropout, BatchNormalization, MaxPooling2D, Conv2D
 from tensorflow.keras.preprocessing import image
