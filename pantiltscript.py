@@ -18,7 +18,7 @@ import lcd_i2c
 # our imports
 from time import gmtime, strftime
 from basic_predictor import predictOnImage
-from play_music import music_handler
+from music_handler import music_handler
 from multiprocessing import Lock
 
 # global variables
