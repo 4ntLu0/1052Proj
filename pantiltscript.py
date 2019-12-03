@@ -18,12 +18,12 @@ import lcd_i2c
 # our imports
 from time import gmtime, strftime
 from basic_predictor import predictOnImage
-from music_handler import music_handler
+from chorus_handler import music_handler
 from multiprocessing import Lock
 
 # global variables
-button_pin1 = 25
-button_pin2 = 25
+button_pin1 = 5
+button_pin2 = 6
 buzzer_pin1 = 27
 
 

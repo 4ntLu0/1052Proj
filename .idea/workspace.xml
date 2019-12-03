@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8397e724-4f6b-473b-9c2b-97b9641b5042" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/LED_code.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PIDcontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/PIDcontroller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sponge_bob_song.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spongebob.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/chorus_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantiltscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantiltscript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servostopper.py" beforeDir="false" afterPath="$PROJECT_DIR$/servostopper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spongebob_printer.py" beforeDir="false" afterPath="$PROJECT_DIR$/spongebob_printer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
