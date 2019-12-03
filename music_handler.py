@@ -1,6 +1,7 @@
 from multiprocessing import Manager, Process
-from music_player import play_spongebob_theme, play_final_countdown, play_super_mario
+from music_player import play_spongebob_theme,  play_super_mario
 from spongebob_printer import print_all_spongebob
+import time
 
 def play_original(has_moved):
     """
@@ -19,6 +20,7 @@ def play_new():
     Plays the spongebob theme.
     """
     while True:
+        time.sleep(4)
         play_spongebob_theme()
 
 def print_new():

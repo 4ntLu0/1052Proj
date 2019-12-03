@@ -2,7 +2,6 @@
 Written by Prayanush Natami for ECOR 1052
 """
 
-
 import RPi.GPIO as GPIO
 import time
 
@@ -119,16 +118,13 @@ def play_spongebob_theme():
         notes['G5'], notes['G5'], notes['C5'],
         notes['C5'], notes['D5'], notes['C5'], notes['A4'], notes['F4'], notes['A4'], notes['C5'], notes['D5'],
         notes['C5'], notes['A4'],
-        notes['F5'], notes['E5'], notes['F5'], notes['D5'], notes['C5'], notes['D5'], notes['C5'], notes['A4'],
-        notes['F4'], notes['A4'], notes['G5'],
+        notes['F5'], notes['D5'], notes['C5'], notes['A4'],
         notes['F5'], notes['G5'], notes['F5'], notes['D5'], notes['B4'], notes['D5'], notes['F5'], notes['G5'],
         notes['F5'], notes['D5'],
-        notes['B4'], notes['D5'], notes['F5'], notes['F5'], notes['D5'], notes['B4'], notes['B4'], notes['D5'],
-        notes['F5'], notes['G5'], notes['A4'],
+        notes['F5'], notes['D5'], notes['C5'], notes['A4'],
         notes['C5'], notes['G5'], notes['C5'], notes['A4'], notes['F4'], notes['A4'], notes['C5'], notes['G5'],
         notes['C5'], notes['A4'],
-        notes['F5'], notes['E5'], notes['D5'], notes['C5'], notes['A4'], notes['F4'], notes['A4'], notes['G4'],
-        notes['F4'], notes['A4'], notes['G5'],
+        notes['F5'], notes['D5'], notes['C5'], notes['A4'],
         notes['F5'], notes['G5'], notes['F5'], notes['D5'], notes['B4'], notes['D5'], notes['F5'], notes['G5'],
         notes['F5'], notes['D5'],
         notes['B4'], notes['D5'], notes['F5'], notes['F5'], notes['D5'], notes['B4'], notes['B4'], notes['D5'],
@@ -146,11 +142,11 @@ def play_spongebob_theme():
     sponge_bob_tempo = [
         1 / 2, 1, 1,
         9, 9, 9, 9, 9, 9, 9, 9, 9, 1,
-        9, 9, 9, 9, 9, 9, 9, 9, 9, 4, 4,
+        1, 1, 1, 1,
         9, 9, 9, 9, 9, 9, 9, 9, 9, 1,
-        9, 9, 9, 9, 9, 9, 9, 9, 9, 4, 4,
+        1, 1, 1, 1,
         9, 9, 9, 9, 9, 9, 9, 9, 9, 1,
-        9, 9, 9, 9, 9, 9, 9, 9, 9, 4, 4,
+        1, 1, 1, 1,
         9, 9, 9, 9, 9, 9, 9, 9, 9, 1,
         9, 9, 9, 9, 9, 9, 9, 9, 9, 1,
         1, 1, 1, 1,
@@ -164,40 +160,6 @@ def play_spongebob_theme():
     ]
     setup()
     play(sponge_bob_melody, sponge_bob_tempo, 0.20, 0.8)
-
-
-def play_final_countdown():
-    final_countdown_melody = [
-        notes['A3'], notes['E5'], notes['D5'], notes['E5'], notes['A4'],
-        notes['F3'], notes['F5'], notes['E5'], notes['F5'], notes['E5'], notes['D5'],
-        notes['D3'], notes['F5'], notes['E5'], notes['F5'], notes['A4'],
-        notes['G3'], 0, notes['D5'], notes['C5'], notes['D5'], notes['C5'], notes['B4'], notes['D5'],
-        notes['C5'], notes['A3'], notes['E5'], notes['D5'], notes['E5'], notes['A4'],
-        notes['F3'], notes['F5'], notes['E5'], notes['F5'], notes['E5'], notes['D5'],
-        notes['D3'], notes['F5'], notes['E5'], notes['F5'], notes['A4'],
-        notes['G3'], 0, notes['D5'], notes['C5'], notes['D5'], notes['C5'], notes['B4'], notes['D5'],
-        notes['C5'], notes['B4'], notes['C5'], notes['D5'], notes['C5'], notes['D5'],
-        notes['E5'], notes['D5'], notes['C5'], notes['B4'], notes['A4'], notes['F5'],
-        notes['E5'], notes['E5'], notes['F5'], notes['E5'], notes['D5'],
-        notes['E5'],
-    ]
-
-    final_countdown_tempo = [
-        1, 16, 16, 4, 4,
-        1, 16, 16, 8, 8, 4,
-        1, 16, 16, 4, 4,
-        2, 4, 16, 16, 8, 8, 8, 8,
-        4, 4, 16, 16, 4, 4,
-        1, 16, 16, 8, 8, 4,
-        1, 16, 16, 4, 4,
-        2, 4, 16, 16, 8, 8, 8, 8,
-        4, 16, 16, 4, 16, 16,
-        8, 8, 8, 8, 4, 4,
-        2, 8, 4, 16, 16,
-        1,
-    ]
-    setup()
-    play(final_countdown_melody, final_countdown_tempo, 0.30, 1.200)
 
 
 def play_super_mario():
@@ -227,6 +189,7 @@ def play_super_mario():
         0, notes['E7'], 0, notes['C7'],
         notes['D7'], notes['B6'], 0, 0
     ]
+
     tempo = [
         12, 12, 12, 12,
         12, 12, 12, 12,
@@ -254,7 +217,7 @@ def play_super_mario():
         12, 12, 12, 12,
     ]
 
-    play(melody, tempo, 1.3, 0.800)
+    play(melody, tempo, 1.3, 0.8)
 
 
 if __name__ == '__main__':
