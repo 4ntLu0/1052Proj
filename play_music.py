@@ -1,5 +1,5 @@
 from multiprocessing import Manager, Process
-from music_player import spongebob_theme, play_final_countdown
+from music_notes import spongebob_theme, play_final_countdown
 from spongebob_printer import print_all_spongebob
 
 def play_original(has_moved):

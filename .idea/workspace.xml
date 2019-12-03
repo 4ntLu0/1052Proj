@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8397e724-4f6b-473b-9c2b-97b9641b5042" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic_predictor.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic_predictor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pantiltscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantiltscript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/music_notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_music.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_music.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +24,7 @@
   </component>
   <component name="ProjectId" id="1UIM90MOdvPZ9XMvKDuKUNNUcux" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="J:/Antdrive/Code MeMes/1051-Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
