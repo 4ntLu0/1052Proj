@@ -1,7 +1,7 @@
-
 import RPi.GPIO as GPIO
 import lcd_i2c
 import time
+
 
 def setupLCD():
     lcd_i2c.lcd_init();
@@ -9,6 +9,7 @@ def setupLCD():
 
 def printLCD(string1, string2):
     lcd_i2c.printer(string1, string2);
+
 
 def print_all_spongebob():
     printLCD("Are you ready", "kids?")
